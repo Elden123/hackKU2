@@ -28,6 +28,7 @@
     </script>
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script>
+        var people = []
         // Fills objects automatically
         function parseData(dataStr) {
             let events = [dataStr.length];
@@ -49,10 +50,11 @@
                     let dateE = new Date(year1, month1, day1, hour1, min1);
 
                     events[i] = new window.Event(dateS, dateE);
-                    console.log(time0, month0, day0, hour0, min0, time1, month1, day1, hour1, min1);
+                    console.log(year0, month0, day0, hour0, min0, year1, month1, day1, hour1, min1);
                 }
             }
-            people.push("Event", events);
+            p = new window.Person("Event", events)
+            people.push(p);
 
         }
         // Initialize Firebase
@@ -67,7 +69,6 @@
         };
         firebase.initializeApp(config);
         var database = firebase.database();
-        var people = []
         let N = 0;
 
         var getRef = database.ref("group/");
@@ -91,6 +92,7 @@
                 return this.events;
             }
         }
+        window.Person = Person
 
         class Event {
             constructor(startDate, endDate) {
