@@ -55,7 +55,6 @@
             }
             let p = new Person("Event", events);
             people.push(p);
-
         }
         // Initialize Firebase
 
@@ -69,7 +68,14 @@
         };
         firebase.initializeApp(config);
         var database = firebase.database();
+
         let N = 0;
+        let Z = 10;
+        let P = 0;
+        let D = 20;
+        let T = 96;
+
+        let holder = new Array(D);
 
         var getRef = database.ref("group/");
         getRef.on('child_added', function(snapshot) {
@@ -88,7 +94,7 @@
             this.endDate = endDate;
         }
 
-    let d1s = new Date(2018, 4, 5, 8, 30);
+    /*let d1s = new Date(2018, 4, 5, 8, 30);
     let d1e = new Date(2018, 4, 5, 9, 45);
 
     let d2s = new Date(2018, 4, 5, 10, 0);
@@ -108,13 +114,7 @@
     let p1 = new Person("Nolan", [e1, e2, e3]);
     let p2 = new Person("Bob", [e1, e2, e3, e4]);
     //console.log(p1["events"][1]["startDate"].getDate());
-
-    let Z = 10;
-    let P = 0;
-    let D = 20;
-    let T = 96;
-
-    let holder = new Array(D);
+    */
 
     for(let i = 0; i < D; i++) {
         holder[i] = new Array(T);
@@ -143,14 +143,19 @@
         }
     }
 
-    putIntoHolder(p1, 0);
+    /*putIntoHolder(p1, 0);
     putIntoHolder(p2, 1);
-    matchUsingHolder();
+    matchUsingHolder();*/
 
-
+    setTimeout(function() {
+        whenDoneSettingUp()
+    }, 2000);
 
     function whenDoneSettingUp() {
-
+        for(let i = 0; i < N; i++) {
+            putIntoHolder(people[i], i);
+        }
+        matchUsingHolder();
     }
 
     function putIntoHolder(person, P) {
