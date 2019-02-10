@@ -69,13 +69,7 @@
         firebase.initializeApp(config);
         var database = firebase.database();
 
-        let N = 0;
-        let Z = 10;
-        let P = 0;
-        let D = 20;
-        let T = 96;
 
-        let holder = new Array(D);
 
         var getRef = database.ref("group/");
         getRef.on('child_added', function(snapshot) {
@@ -116,44 +110,58 @@
     //console.log(p1["events"][1]["startDate"].getDate());
     */
 
-    for(let i = 0; i < D; i++) {
-        holder[i] = new Array(T);
-        for(let j = 0; j < T; j++) {
-            holder[i][j] = new Array(N);
-        }
-    }
 
-    for(let i = 0; i < D; i++) {
-        for(let j = 0; j < T; j++) {
-            for(let k = 0; k < N; k++) {
-                holder[i][j][k] = 0;
-            }
-        }
-    }
-
-    let opens = new Array(D);
-
-    for(let i = 0; i < D; i++) {
-        opens[i] = new Array(T);
-    }
-
-    for(let i = 0; i < D; i++) {
-        for(let j = 0; j < T; j++) {
-            opens[i][j] = 0;
-        }
-    }
-    console.log(holder);
-    console.log(opens);
 
     /*putIntoHolder(p1, 0);
     putIntoHolder(p2, 1);
     matchUsingHolder();*/
 
+    let N = 0;
+    let Z = 10;
+    let P = 0;
+    let D = 20;
+    let T = 96;
+
+    let holder = new Array(D);
+    let opens = new Array(D);
+
     setTimeout(function() {
-        //whenDoneSettingUp()
+        whenDoneSettingUp()
     }, 2000);
 
     function whenDoneSettingUp() {
+
+        holder = new Array(D);
+        opens = new Array(D);
+
+        for(let i = 0; i < D; i++) {
+            holder[i] = new Array(T);
+            for(let j = 0; j < T; j++) {
+                holder[i][j] = new Array(N);
+            }
+        }
+
+        for(let i = 0; i < D; i++) {
+            for(let j = 0; j < T; j++) {
+                for(let k = 0; k < N; k++) {
+                    holder[i][j][k] = 0;
+                }
+            }
+        }
+
+        for(let i = 0; i < D; i++) {
+            opens[i] = new Array(T);
+        }
+
+        for(let i = 0; i < D; i++) {
+            for(let j = 0; j < T; j++) {
+                opens[i][j] = 0;
+            }
+        }
+        console.log(holder);
+        console.log(opens);
+        console.log("ADFASDFASDFASFASFASFASDF");
+
         for(let i = 0; i < N; i++) {
             putIntoHolder(people[i], i);
         }
