@@ -29,31 +29,31 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script>
         // Fills objects automatically
-        let parseData = (dataStr) => {
+        parseData(dataStr) {
             let events = [dataStr.length];
             for(let i = 0; i < dataStr.length; i++) {
                 dataStr[i] = dataStr[i].toString();
                 if(dataStr[i].substring(0, 1) != 'u') {
                     let year0 = parseInt(dataStr[i].substring(0, 4));
                     let month0 = parseInt(dataStr[i].substring(5, 7));
-                    let day0 = parseInt(dataStr[i].substring(8, 10)); 
+                    let day0 = parseInt(dataStr[i].substring(8, 10));
                     let hour0 = parseInt(dataStr[i].substring(11, 13));
                     let min0 = parseInt(dataStr[i].substring(14, 16));
                     let year1 = parseInt(dataStr[i].substring(27, 31));
                     let month1 = parseInt(dataStr[i].substring(32, 34));
-                    let day1 = parseInt(dataStr[i].substring(35, 37)); 
+                    let day1 = parseInt(dataStr[i].substring(35, 37));
                     let hour1 = parseInt(dataStr[i].substring(38, 40));
                     let min1 = parseInt(dataStr[i].substring(41, 43));
 
                     let dateS = new Date(year0, month0, day0, hour0, min0);
                     let dateE = new Date(year1, month1, day1, hour1, min1);
-                    
+
                     events[i] = new Event(dateS, dateE);
                     console.log(time0, month0, day0, hour0, min0, time1, month1, day1, hour1, min1);
                 }
             }
             people.push("Event", events);
-            
+
         }
         // Initialize Firebase
 
@@ -106,6 +106,7 @@
                 return this.endDate;
             }
         }
+        window.Event = Event
 
         console.log("Start");
 
@@ -168,7 +169,7 @@
     putIntoHolder(p2, 1);
     matchUsingHolder();
 
-    
+
 
     function whenDoneSettingUp() {
 
