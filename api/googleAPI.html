@@ -12,7 +12,8 @@
     <button id="signout_button" style="display: none;">Sign Out</button>
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
-
+    
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '150310512572-g3icj71br2koghlmqrd19k62c5ini0rf.apps.googleusercontent.com';
@@ -99,7 +100,7 @@
             pre.appendChild(textContent);
         }
 
-        var config = {
+    var config = {
             apiKey: "AIzaSyBeUBmmPPzBrMY9judTgtfrgQRhBmBg-yQ",
             authDomain: "calendar-synthesizer.firebaseapp.com",
             databaseURL: "https://calendar-synthesizer.firebaseio.com",
