@@ -134,12 +134,12 @@
               var when = event.start.dateTime + "--" + event.end.dateTime;
               if (!when) {
                 when = event.start.date + "--" + event.end.date;
-                  postRef.push().set({
+                  postsRef.push().set({
                   startDate: event.start.date,
                   endDate: event.end.date,
                 });
               } else {
-                  postRef.push().set({
+                  postsRef.push().set({
                   startDate: event.start.dateTime,
                   endDate: event.end.dateTime,
                 });
