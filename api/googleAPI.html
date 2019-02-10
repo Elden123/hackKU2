@@ -133,12 +133,12 @@
               var when = event.start.dateTime + "--" + event.end.dateTime;
               if (!when) {
                 when = event.start.date + "--" + event.end.date;
-                  database.ref("group/" + event.getGuestList().getEmail() + "/" + i).set({
+                  database.ref("group/" + event.getGuestList()[0].getEmail() + "/" + i).set({
                   startDate: event.start.date,
                   endDate: event.end.date,
                 });
               } else {
-                  database.ref("group/" + event.getGuestList().getEmail() + "/" + i).set({
+                  database.ref("group/" + event.getGuestList()[0].getEmail() + "/" + i).set({
                   startDate: event.start.dateTime,
                   endDate: event.end.dateTime,
                 });
