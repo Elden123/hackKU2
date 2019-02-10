@@ -289,8 +289,9 @@ let options = [0];
                     hMin = 45;
                 }
                 hDay = options[i].date;
-
-                document.write(hDay + " " + hHour + ":" + hMin + " " + options[i].fit + "\n");
+                if(hDay < 30) {
+                    document.write(hDay + " " + hHour + ":" + hMin + " " + options[i].fit + "\n");
+                }
             }
         }
     }
