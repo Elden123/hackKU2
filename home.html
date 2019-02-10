@@ -44,6 +44,7 @@
     var getRef = database.ref("group/");
 	getRef.on('child_added', function(snapshot) {
 		console.log(snapshot.val().date);
+        parseData(snapshot.val().date);
 	});
 
     class Person {
@@ -74,10 +75,6 @@
         getEndDate() {
             return this.endDate;
         }
-    }
-
-    function parseData(dataStr) {
-        
     }
 
     console.log("Start");
@@ -141,6 +138,24 @@
     putIntoHolder(p1, 0);
     putIntoHolder(p2, 1);
     matchUsingHolder();
+
+    // Fills objects automatically
+    function parseData(dataStr) {
+        if(dataStr.substring(0, 1) != 'u') {
+            let time0 = parseInt(dataStr.substring(0, 4));
+            let month0 = parseInt(dataStr.substring(5, 7));
+            let day0 = parseInt(dataStr.substring(8, 10)); 
+            let hour0 = parseInt(dataStr.substring(11, 13));
+            let min0 = parseInt(dataStr.substring(14, 16));
+            let time1 = parseInt(dataStr.substring(27, 31));
+            let month1 = parseInt(dataStr.substring(32, 34));
+            let day1 = parseInt(dataStr.substring(35, 37)); 
+            let hour1 = parseInt(dataStr.substring(38, 40));
+            let min1 = parseInt(dataStr.substring(41, 43));
+
+            console.log(time0, month0, day0, hour0, min0, time1, month1, day1, hour1, min1);
+        }
+    }
 
     function putIntoHolder(person, P) {
         let year = 2018;
