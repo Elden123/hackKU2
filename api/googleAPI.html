@@ -99,12 +99,23 @@
             pre.appendChild(textContent);
         }
 
+        var config = {
+            apiKey: "AIzaSyBeUBmmPPzBrMY9judTgtfrgQRhBmBg-yQ",
+            authDomain: "calendar-synthesizer.firebaseapp.com",
+            databaseURL: "https://calendar-synthesizer.firebaseio.com",
+            projectId: "calendar-synthesizer",
+            storageBucket: "calendar-synthesizer.appspot.com",
+            messagingSenderId: "150310512572"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
       /**
        * Print the summary and start datetime/date of the next ten events in
        * the authorized user's calendar. If no events are found an
        * appropriate message is printed.
        */
-function listUpcomingEvents() {
+        function listUpcomingEvents() {
         gapi.client.calendar.events.list({
           'calendarId': 'primary',
           'timeMin': (new Date()).toISOString(),
