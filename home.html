@@ -29,7 +29,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script>
         // Fills objects automatically
-        parseData(dataStr) {
+        function parseData(dataStr) {
             let events = [dataStr.length];
             for(let i = 0; i < dataStr.length; i++) {
                 dataStr[i] = dataStr[i].toString();
