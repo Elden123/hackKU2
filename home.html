@@ -50,7 +50,7 @@
                     let dateE = new Date(year1, month1, day1, hour1, min1);
 
                     events[i] = new Event(dateS, dateE);
-                    console.log(year0, month0, day0, hour0, min0, year1, month1, day1, hour1, min1);
+                    //console.log(year0, month0, day0, hour0, min0, year1, month1, day1, hour1, min1);
                 }
             }
             let p = new Person("Event", events);
@@ -73,7 +73,7 @@
 
         var getRef = database.ref("group/");
         getRef.on('child_added', function(snapshot) {
-            console.log(snapshot.val().date);
+            //console.log(snapshot.val().date);
             parseData(snapshot.val().date);
             N++;
         }).then(() => console.log("all is done"));
@@ -87,8 +87,6 @@
             this.startDate = startDate;
             this.endDate = endDate;
         }
-
-        console.log("Start");
 
     let d1s = new Date(2018, 4, 5, 8, 30);
     let d1e = new Date(2018, 4, 5, 9, 45);
@@ -201,7 +199,7 @@
             minute = 0;
             time = new Date(year, month, day, hour, minute);
         }
-        console.log(holder);
+        console.log("holder", holder);
     }
 
     function matchUsingHolder() {
@@ -214,7 +212,7 @@
                 }
             }
         }
-        console.log(opens);
+        console.log("opens", opens);
     }
 
     function findMaxOfOpens() {
