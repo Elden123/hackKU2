@@ -110,6 +110,12 @@
     };
     firebase.initializeApp(config);
     var database = firebase.database();
+    // Import Admin SDK
+    var admin = require("firebase-admin");
+
+    // Get a database reference to our blog
+    var db = admin.database();
+    var ref = db.ref("server/saving-data/fireblog");
     var postsRef = ref.child("group/posts");
 
       /**
