@@ -93,6 +93,7 @@
     //console.log(p1["events"][1]["startDate"].getDate());
 
     let N = 10;
+    let Z = 10;
     let P = 0;
     let D = 20;
     let T = 96;
@@ -190,6 +191,40 @@
             }
         }
         console.log(opens);
+    }
+
+    function findMaxOfOpens() {
+        let options = [];
+        for(i = 0; i < D; i++) {
+            for(j = 0; j < T; j++) {
+                if(N / Z == 1) {
+                    options[i] = Options(i, j, max)
+                    max[i] = opens[i][j]
+                }
+                else if(N/Z >= .7) {
+                    options[i] = Options(i, j, q3)
+                    options[i] = opens[i][j]
+                }
+            }
+        }
+    }
+
+    class Options {
+        constructor(row, col, qual) {
+            this.date = row
+            this.time = col
+            this.fit = qual
+        }
+        
+        getDate() {
+            return this.date
+        }
+        getTime() {
+            return this.time
+        }
+        getFit() {
+            return this.fit
+        }
     }
 
     </script>
