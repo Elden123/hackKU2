@@ -43,7 +43,7 @@
 
     var getRef = database.ref("group/");
 	getRef.on('child_added', function(snapshot) {
-		console.log(snapshot.val());
+		console.log(snapshot.val().date);
 	});
 
     class Person {
