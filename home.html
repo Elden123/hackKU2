@@ -141,6 +141,7 @@
 
     // Fills objects automatically
     function parseData(dataStr) {
+        dataStr = dataStr.toString();
         if(dataStr.substring(0, 1) != 'u') {
             let time0 = parseInt(dataStr.substring(0, 4));
             let month0 = parseInt(dataStr.substring(5, 7));
