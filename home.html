@@ -69,6 +69,10 @@
         }
     }
 
+    function parseData(dataStr) {
+        
+    }
+
     console.log("Start");
 
     let d1s = new Date(2018, 4, 5, 8, 30);
@@ -199,11 +203,9 @@
             for(j = 0; j < T; j++) {
                 if(N / Z == 1) {
                     options[i] = Options(i, j, max)
-                    max[i] = opens[i][j]
                 }
                 else if(N/Z >= .7) {
                     options[i] = Options(i, j, q3)
-                    options[i] = opens[i][j]
                 }
             }
         }
