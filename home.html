@@ -167,6 +167,7 @@
         }
         matchUsingHolder();
         findMaxOfOpens();
+        displayResults();
     }
 
     function putIntoHolder(person, P) {
@@ -264,6 +265,18 @@
         getFit() {
             return this.fit;
         }
+    }
+
+    function displayResults() {
+        let m = "";
+        if(options.length == 0) {
+            m += "Available dates will be shown here!"
+        } else {
+            for(i = 0; i < options.length; i++) {
+                m += options[i]
+            }
+        }
+        document.getElementById("Display").innerHTML = m;
     }
 
     </script>
