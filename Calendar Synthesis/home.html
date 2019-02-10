@@ -267,11 +267,30 @@ let options = [0];
     }
 
     function displayResults() {
+        let hHour = 0;
+        let hMin = 0;
+        let hDay = 0;
         if(options.length == 0) {
             document.write("Available dates will be shown here!");
         } else {
             for(i = 0; i < options.length; i++) {
-                document.write(options[i].date + options[i].time + options[i].fit + "\n");
+                hHour = options[i].time / 4;
+                hMin = options[i].time % 4
+                if(hMin == 0) {
+                    hMin = 0;
+                }
+                else if(hMin == 1) {
+                    hMin = 15;
+                }
+                else if(hMin == 2) {
+                    hMin = 30;
+                }
+                else {
+                    hMin = 45;
+                }
+                hDay = options[i].date;
+
+                document.write(hDay + ":" + hHour + ":" + hMin + " " + options[i].fit + "\n");
             }
         }
     }
