@@ -238,10 +238,10 @@
         for(i = 0; i < D; i++) {
             for(j = 0; j < T; j++) {
                 if(N / Z == 1) {
-                    options[i] = Options(i, j, max)
+                    options[i] = new Options(i, j, max)
                 }
                 else if(N/Z >= .7) {
-                    options[i] = Options(i, j, q3)
+                    options[i] = new Options(i, j, q3)
                 }
             }
         }
