@@ -141,7 +141,7 @@
 
     // Fills objects automatically
     function parseData(dataStr) {
-        for(int i = 0; i < dataStr.length; i++) {
+        for(let i = 0; i < dataStr.length; i++) {
             dataStr[i] = dataStr[i].toString();
             if(dataStr[i].substring(0, 1) != 'u') {
                 let time0 = parseInt(dataStr[i].substring(0, 4));
