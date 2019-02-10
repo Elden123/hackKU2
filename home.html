@@ -37,50 +37,50 @@
             projectId: "calendar-synthesizer",
             storageBucket: "calendar-synthesizer.appspot.com",
             messagingSenderId: "150310512572"
-    };
-    firebase.initializeApp(config);
-    var database = firebase.database();
-    var people = []
-    let N = 0;
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        var people = []
+        let N = 0;
 
-    var getRef = database.ref("group/");
-	getRef.on('child_added', function(snapshot) {
-		console.log(snapshot.val().date);
-        parseData(snapshot.val().date);
-        N++;
-	}).then(() => console.log("all is done"));
+        var getRef = database.ref("group/");
+        getRef.on('child_added', function(snapshot) {
+            console.log(snapshot.val().date);
+            parseData(snapshot.val().date);
+            N++;
+        }).then(() => console.log("all is done"));
 
-    class Person {
-        constructor(firstName, events) {
-            this.firstName = firstName;
-            this.events = events;
+        class Person {
+            constructor(firstName, events) {
+                this.firstName = firstName;
+                this.events = events;
+            }
+
+            getFirstName()  {
+                return this.firstName;
+            }
+
+            getEvents() {
+                return this.events;
+            }
         }
 
-        getFirstName()  {
-            return this.firstName;
+        class Event {
+            constructor(startDate, endDate) {
+                this.startDate = startDate;
+                this.endDate = endDate;
+            }
+
+            getStartDate() {
+                return this.startDate;
+            }
+
+            getEndDate() {
+                return this.endDate;
+            }
         }
 
-        getEvents() {
-            return this.events;
-        }
-    }
-
-    class Event {
-        constructor(startDate, endDate) {
-            this.startDate = startDate;
-            this.endDate = endDate;
-        }
-
-        getStartDate() {
-            return this.startDate;
-        }
-
-        getEndDate() {
-            return this.endDate;
-        }
-    }
-
-    console.log("Start");
+        console.log("Start");
 
     let d1s = new Date(2018, 4, 5, 8, 30);
     let d1e = new Date(2018, 4, 5, 9, 45);
@@ -142,7 +142,7 @@
     matchUsingHolder();
 
     // Fills objects automatically
-    function parseData(dataStr) {
+    parseData = (dataStr) => {
         let events = [dataStr.length];
         for(let i = 0; i < dataStr.length; i++) {
             dataStr[i] = dataStr[i].toString();
