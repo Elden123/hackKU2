@@ -126,7 +126,7 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
-          var times = []
+          var times = [];
 
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
@@ -135,7 +135,7 @@
               if (!when) {
                 when = event.start.date + "--" + event.end.date;
               }
-              times.append(when);
+              times.append(when.toString());
               console.log(event.summary + ' (' + when + ')')
             }
           } else {
