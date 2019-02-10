@@ -39,6 +39,7 @@
             messagingSenderId: "150310512572"
     };
     firebase.initializeApp(config);
+    var database = firebase.database();
 
     var getRef = database.ref("group/");
 	getRef.on('child_added', function(snapshot) {
