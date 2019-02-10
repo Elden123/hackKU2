@@ -271,7 +271,7 @@ let options = [0];
             document.write("Available dates will be shown here!");
         } else {
             for(i = 0; i < options.length; i++) {
-                document.write(options[i] + "\n");
+                document.write(options[i].date + options[i].time + options[i].fit + "\n");
             }
         }
         document.getElementById("Display").innerHTML = m;
