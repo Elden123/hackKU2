@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Meetings!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" language="javascript">
+    alert(1);
+    $(document).ready(function(){
+        $.ajax({
+          type: "POST",
+          url: "test.py",
+        }).done(function( o ) {
+           console.log("This Worked!");
+        });
+        console.log("Here");
+    });
+    </script>
+    <script language="javascript">
+        function dispNewBtn(x) {
+            if(x == 0) {
+                document.getElementById("btn1").style.visibility="visible"
+                document.getElementById("btn2").style.visibility="hidden"
+            }
+            else {
+                document.getElementById("btn2").style.visibility="visible"
+                document.getElementById("btn1").style.visibility="hidden"
+            }
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        console.log("THIS IS NOT A DRILL")
+        var config = {
+            apiKey: "AIzaSyBeUBmmPPzBrMY9judTgtfrgQRhBmBg-yQ",
+            authDomain: "calendar-synthesizer.firebaseapp.com",
+            databaseURL: "https://calendar-synthesizer.firebaseio.com",
+            projectId: "calendar-synthesizer",
+            storageBucket: "calendar-synthesizer.appspot.com",
+            messagingSenderId: "150310512572"
+    };
+    firebase.initializeApp(config);
+    class Person {
+        constructor(firstName, events) {
+            this.firstName = firstName;
+            this.events = events;
+        }
+
+        getFirstName()  {
+            return this.firstName;
+        }
+
+        getEvents() {
+            return this.events;
+        }
+    }
+
+    class Event {
+        constructor(startDate, endDate) {
+            this.startDate = startDate;
+            this.endDate = endDate;
+        }
+
+        getStartDate() {
+            return this.startDate;
+        }
+
+        getEndDate() {
+            return this.endDate;
+        }
+    }
+
+    console.log("Start");
+
+    let d1s = new Date(2018, 4, 5, 8, 30);
+    let d1e = new Date(2018, 4, 5, 9, 45);
+
+    let d2s = new Date(2018, 4, 5, 10, 0);
+    let d2e = new Date(2018, 4, 5, 10, 30);
+
+    let d3s = new Date(2018, 4, 5, 12, 15);
+    let d3e = new Date(2018, 4, 5, 12, 30);
+
+    let d4s = new Date(2018, 4, 6, 10, 0);
+    let d4e = new Date(2018, 4, 6, 10, 45);
+
+    let e1 = new Event(d1s, d1e);
+    let e2 = new Event(d2s, d2e);
+    let e3 = new Event(d3s, d3e);
+    let e4 = new Event(d4s, d4e);
+
+    let p1 = new Person("Nolan", [e1, e2, e3]);
+    let p2 = new Person("Bob", [e1, e2, e3, e4]);
+    //console.log(p1["events"][1]["startDate"].getDate());
+
+    let N = 10;
+    let P = 0;
+    let D = 20;
+    let T = 96;
+
+    let holder = new Array(D);
+
+    for(let i = 0; i < D; i++) {
+        holder[i] = new Array(T);
+        for(let j = 0; j < T; j++) {
+            holder[i][j] = new Array(N);
+        }
+    }
+
+    for(let i = 0; i < D; i++) {
+        for(let j = 0; j < T; j++) {
+            for(let k = 0; k < N; k++) {
+                holder[i][j][k] = 0;
+            }
+        }
+    }
+
+    let opens = new Array(D);
+
+    for(let i = 0; i < D; i++) {
+        opens[i] = new Array(T);
+    }
+
+    for(let i = 0; i < D; i++) {
+        for(let j = 0; j < T; j++) {
+            opens[i][j] = 0;
+        }
+    }
+
+    putIntoHolder(p1, 0);
+    putIntoHolder(p2, 1);
+    matchUsingHolder();
+
+    function putIntoHolder(person, P) {
+        let year = 2018;
+        let month = 4;
+        let day = 5;
+        let hour = 0;
+        let minute = 0;
+        let time = new Date(year, month, day, hour, minute);
+        let eventCounter = 0;
+
+        for(let i = 0; i < D; i++) {
+            for(let j = 0; j < T; j++) {
+                try {
+                    if(person["events"][eventCounter]["startDate"].getDate() == time.getDate() && person["events"][eventCounter]["startDate"].getHours() == time.getHours()) {
+                        let diff = person["events"][eventCounter]["endDate"] - person["events"][eventCounter]["startDate"];
+                        let js = ((Math.abs(diff) / 1000) / 60) / 15;
+                        let x = 0;
+                        for(let k = 0; k < js; k++) {
+                            holder[i][j+x][P] = 1;
+                            x++;
+                        }
+                        eventCounter++;
+                    }
+                } catch(err) {
+                    //nothing
+                }
+                if(time.getMinutes() <= 30) {
+                    minute += 15;
+                } else if(time.getHours() <= 22) {
+                    hour++;
+                    minute = 0;
+                }
+                time = new Date(year, month, day, hour, minute);
+            }
+            if(time.getDate() <= 29) {
+                day++;
+            } else if(time.getMonth() <= 11) {
+                month++;
+            } else {
+                year++;
+                month = 0;
+                day = 0;
+            }
+            hour = 0;
+            minute = 0;
+            time = new Date(year, month, day, hour, minute);
+        }
+        console.log(holder);
+    }
+
+    function matchUsingHolder() {
+        for(let i = 0; i < D; i++) {
+            for(let j = 0; j < T; j++) {
+                for(let k = 0; k < N; k++) {
+                    if (holder[i][j][k] == 0) {
+                        opens[i][j]++;
+                    }
+                }
+            }
+        }
+        console.log(opens);
+    }
+
+    </script>
+    <!--{% load static %}
+    <script src="{% static 'matching.js' %}"> </script>-->
+
+</head>
+<body>
+    <h1>Calendar Synthesizer</h1>
+    <div class="landing-quote">
+        <h3>PLAN FOR SUCCESS, NOT FOR AVAILABILITY</h3>
+    </div>
+    <div class="ui-btns">
+        <div id="btn1">
+            <button
+                onclick="dispNewBtn(1)">
+                Let's Get Started!
+            </button> <!-- Cool Button -->
+        </div>
+        <div id="btn2" style="visibility: hidden">
+            <h5>
+                Choose your source:
+            </h5>
+            <button><a href="/google">
+                Google
+            </a></button>
+            <button><a href="/outlook">
+                Outlook
+            </a></button>
+            <button>
+                Gather Calendars!
+            </button>
+            <button>
+                Submit
+            </button>
+        </div>
+    </div>
+</body>
+</html>
