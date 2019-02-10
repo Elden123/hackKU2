@@ -119,9 +119,9 @@
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
               var event = events[i];
-              var when = event.start.dateTime;
+              var when = event.start.dateTime + "--" event.end.dateTime;
               if (!when) {
-                when = event.start.date;
+                when = event.start.date + "--" event.end.dateTime;
               }
               console.log(event.summary + ' (' + when + ')')
             }
