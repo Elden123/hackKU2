@@ -166,6 +166,7 @@
             putIntoHolder(people[i], i);
         }
         matchUsingHolder();
+        findMaxOfOpens();
     }
 
     function putIntoHolder(person, P) {
@@ -242,23 +243,24 @@
                 }
             }
         }
+        console.log("options", options);
     }
 
     class Options {
         constructor(row, col, qual) {
-            this.date = row
-            this.time = col
-            this.fit = qual
+            this.date = row;
+            this.time = col;
+            this.fit = qual;
         }
 
         getDate() {
-            return this.date
+            return this.date;
         }
         getTime() {
-            return this.time
+            return this.time;
         }
         getFit() {
-            return this.fit
+            return this.fit;
         }
     }
 
