@@ -110,7 +110,7 @@
     };
     firebase.initializeApp(config);
     var database = firebase.database();
-    var postsRef = database.ref.child("group/posts");
+    var postsRef = ref.child("group/posts");
 
       /**
        * Print the summary and start datetime/date of the next ten events in
