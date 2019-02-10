@@ -29,7 +29,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script>
         // Initialize Firebase
-        console.log("THIS IS NOT A DRILL")
+
         var config = {
             apiKey: "AIzaSyBeUBmmPPzBrMY9judTgtfrgQRhBmBg-yQ",
             authDomain: "calendar-synthesizer.firebaseapp.com",
@@ -39,6 +39,12 @@
             messagingSenderId: "150310512572"
     };
     firebase.initializeApp(config);
+
+    var getRef = database.ref("group/");
+	getRef.on('child_added', function(snapshot) {
+		console.log(snapshot);
+	});
+
     class Person {
         constructor(firstName, events) {
             this.firstName = firstName;
@@ -215,7 +221,7 @@
             this.time = col
             this.fit = qual
         }
-        
+
         getDate() {
             return this.date
         }
