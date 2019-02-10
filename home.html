@@ -40,12 +40,15 @@
     };
     firebase.initializeApp(config);
     var database = firebase.database();
+    var people = []
+    let N = 0;
 
     var getRef = database.ref("group/");
 	getRef.on('child_added', function(snapshot) {
 		console.log(snapshot.val().date);
         parseData(snapshot.val().date);
-	});
+        N++;
+	}).then(() => console.log("all is done"));
 
     class Person {
         constructor(firstName, events) {
@@ -100,7 +103,6 @@
     let p2 = new Person("Bob", [e1, e2, e3, e4]);
     //console.log(p1["events"][1]["startDate"].getDate());
 
-    let N = 10;
     let Z = 10;
     let P = 0;
     let D = 20;
@@ -141,6 +143,7 @@
 
     // Fills objects automatically
     function parseData(dataStr) {
+        let events = [dataStr.length];
         for(let i = 0; i < dataStr.length; i++) {
             dataStr[i] = dataStr[i].toString();
             if(dataStr[i].substring(0, 1) != 'u') {
@@ -155,10 +158,19 @@
                 let hour1 = parseInt(dataStr[i].substring(38, 40));
                 let min1 = parseInt(dataStr[i].substring(41, 43));
 
+                let dateS = new Date(year0, month0, day0, hour0, min0);
+                let dateE = new Date(year1, month1, day1, hour1, min1);
+                
+                events[i] = new Event(dateS, dateE);
                 console.log(time0, month0, day0, hour0, min0, time1, month1, day1, hour1, min1);
             }
         }
+        people.push("Event", events);
         
+    }
+
+    function whenDoneSettingUp() {
+
     }
 
     function putIntoHolder(person, P) {
