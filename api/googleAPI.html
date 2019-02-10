@@ -110,13 +110,6 @@
     };
     firebase.initializeApp(config);
     var database = firebase.database();
-    // Import Admin SDK
-    var admin = require("firebase-admin");
-
-    // Get a database reference to our blog
-    var db = admin.database();
-    var ref = db.ref("server/saving-data/fireblog");
-    var postsRef = ref.child("group/posts");
 
       /**
        * Print the summary and start datetime/date of the next ten events in
@@ -133,6 +126,7 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
+          var times = []
 
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
@@ -140,21 +134,16 @@
               var when = event.start.dateTime + "--" + event.end.dateTime;
               if (!when) {
                 when = event.start.date + "--" + event.end.date;
-                  postsRef.push().set({
-                  startDate: event.start.date,
-                  endDate: event.end.date,
-                });
-              } else {
-                  postsRef.push().set({
-                  startDate: event.start.dateTime,
-                  endDate: event.end.dateTime,
-                });
               }
+              times.append(when);
               console.log(event.summary + ' (' + when + ')')
             }
           } else {
             //throw error
           }
+          database.push({
+            date: times
+          });
         });
       }
 
