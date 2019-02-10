@@ -49,11 +49,11 @@
                     let dateS = new Date(year0, month0, day0, hour0, min0);
                     let dateE = new Date(year1, month1, day1, hour1, min1);
 
-                    events[i] = new window.Event(dateS, dateE);
+                    events[i] = new Event(dateS, dateE);
                     console.log(year0, month0, day0, hour0, min0, year1, month1, day1, hour1, min1);
                 }
             }
-            let p = new window.Person("Event", events);
+            let p = new Person("Event", events);
             people.push(p);
 
         }
@@ -78,37 +78,15 @@
             N++;
         }).then(() => console.log("all is done"));
 
-        class Person {
-            constructor(firstName, events) {
-                this.firstName = firstName;
-                this.events = events;
-            }
-
-            getFirstName()  {
-                return this.firstName;
-            }
-
-            getEvents() {
-                return this.events;
-            }
+        function Person (firstName, events) {
+            this.firstName = firstName;
+            this.events = events;
         }
 
-        class Event {
-            constructor(startDate, endDate) {
-                this.startDate = startDate;
-                this.endDate = endDate;
-            }
-
-            getStartDate() {
-                return this.startDate;
-            }
-
-            getEndDate() {
-                return this.endDate;
-            }
+        function Event (startDate, endDate) {
+            this.startDate = startDate;
+            this.endDate = endDate;
         }
-        window.Event = Event;
-        window.Person = Person;
 
         console.log("Start");
 
