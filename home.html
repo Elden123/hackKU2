@@ -231,18 +231,17 @@
         }
         console.log("opens", opens);
     }
-
+let options = [];
     function findMaxOfOpens() {
-        let options = [];
         let max = "Max";
         let q3 = "3rd Quartile";
         for(i = 0; i < D; i++) {
             for(j = 0; j < T; j++) {
                 if(N / Z == 1) {
-                    options[i] = new Options(i, j, max)
+                    options.push(new Options(i, j, max));
                 }
                 else if(N/Z >= .7) {
-                    options[i] = new Options(i, j, q3)
+                    options.push(new Options(i, j, q3));
                 }
             }
         }
@@ -268,7 +267,7 @@
     }
 
     function displayResults() {
-        let m = "";
+        let m = "Available dates will be shown here!";
         if(options.length == 0) {
             m += "Available dates will be shown here!"
         } else {
@@ -280,39 +279,179 @@
     }
 
     </script>
+
+    <link rel=“stylesheet” type=“text/css” href=“grayscale.css”>
+      <link rel=“stylesheet” type=“text/css” href=“grayscale.min.css”>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <title>Calendar Synthesis</title>
+
+      <!-- Bootstrap core CSS -->
+      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Custom fonts for this template -->
+      <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="css/grayscale.min.css" rel="stylesheet">
     <!--{% load static %}
     <script src="{% static 'matching.js' %}"> </script>-->
 
 </head>
-<body>
-    <h1>Calendar Synthesizer</h1>
-    <div class="landing-quote">
-        <h3>PLAN FOR SUCCESS, NOT FOR AVAILABILITY</h3>
-    </div>
-    <div class="ui-btns">
-        <div id="btn1">
-            <button
-                onclick="dispNewBtn(1)">
-                Let's Get Started!
-            </button> <!-- Cool Button -->
+<body id="page-top">
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand js-scroll-trigger" href="#page-top">Back to top</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#projects">Planning</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div id="btn2" style="visibility: hidden">
-            <h5>
-                Choose your source:
-            </h5>
-            <button><a href="api/googleAPI.html">
-                Google
-            </a></button>
-            <button><a href="/outlook">
-                Outlook
-            </a></button>
-            <button>
-                Gather Calendars!
-            </button>
-            <button>
-                Submit
-            </button>
+      </nav>
+
+      <!-- Header -->
+      <header class="masthead">
+        <div class="container d-flex h-100 align-items-center">
+          <div class="mx-auto text-center">
+            <h1 class="mx-auto my-0 text-uppercase">Calendar Synthesis</h1>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page web app personal planner, that links your friends' calendars to yours -- know who is free anytime, anywhere.</h2>
+            <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
+          </div>
         </div>
-    </div>
-</body>
+      </header>
+
+      <!-- About Section -->
+      <section id="about" class="about-section text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-white mb-4">What is your primary calendar web app?</h2>
+              <p class="text-white-50">Calendar Synthesis is a planning tool that links your friends' calendars to yours -- know who is free anytime, anywhere.</p>
+              <h2 class="text-white mb-4">PLAN FOR SUCCESS, NOT FOR AVAILABILITY</h2>
+
+              <div class="ui-btns">
+                  <div id="btn1">
+
+                    <a href="api/googleAPI.html" class="btn btn-primary">
+                        Google
+                    </a>
+                    <a href="/outlook" class="btn btn-primary">
+                        Outlook
+                    </a>
+
+
+                    <a href="" class="btn btn-primary">
+                        Gather Calendars!
+                    </a>
+                    <a href=""class="btn btn-primary">
+                        Submit
+                    </a>
+                  </div>
+
+                  </div>
+              </div>
+              </div>
+              </div>
+              </div>
+
+
+
+            </div>
+          </div>
+          <img src="img/ipad.png" class="img-fluid" alt="">
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="projects-section bg-light">
+        <div class="container">
+
+          <!-- Featured Project Row -->
+          <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+            <div class="col-xl-8 col-lg-7">
+              <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
+            </div>
+            <div class="col-xl-4 col-lg-5">
+              <div class="featured-text text-center text-lg-left">
+
+                <p class="text-black-50 mb-0">we'll enter our email buttons here</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project One Row -->
+          <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+            <div class="col-lg-6">
+              <img class="img-fluid" src="img/demo-image-01.jpg" alt="">
+            </div>
+            <div class="col-lg-6">
+              <div class="bg-black text-center h-100 project">
+                <div class="d-flex h-100">
+                  <div class="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 class="text-white">This is your availability for today</h4>
+                    <p class="mb-0 text-white-50">insert logic here for calendar matching</p>
+                    <hr class="d-none d-lg-block mb-0 ml-0">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Two Row -->
+          <div class="row justify-content-center no-gutters">
+            <div class="col-lg-6">
+              <img class="img-fluid" src="img/demo-image-02.jpg" alt="">
+            </div>
+            <div class="col-lg-6 order-lg-first">
+              <div class="bg-black text-center h-100 project">
+                <div class="d-flex h-100">
+                  <div class="project-text w-100 my-auto text-center text-lg-right">
+                    <h4 class="text-white">This is your availability for this week</h4>
+                    <p class="mb-0 text-white-50">insert more logic for calendar matching</p>
+                    <hr class="d-none d-lg-block mb-0 mr-0">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-black small text-center text-white-50">
+        <div class="container">
+          Copyright &copy; Nolan, Marcus, Nina 2019
+          <p>#HackKU2019</p>
+        </div>
+      </footer>
+
+      <!-- Bootstrap core JavaScript -->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+      <!-- Plugin JavaScript -->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+      <!-- Custom scripts for this template -->
+      <script src="js/grayscale.min.js"></script>
+    </body>
 </html>
